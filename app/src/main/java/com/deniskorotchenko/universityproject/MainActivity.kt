@@ -1,4 +1,4 @@
-package com.deniskorotchenko.testapplication
+package com.deniskorotchenko.universityproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
