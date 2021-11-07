@@ -1,7 +1,11 @@
 package com.deniskorotchenko.universityproject
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class User(
-    val avatarUrl: String, // URL to image in format like this: "https//test.com/test.jpg"
-    val userName: String,
-    val groupName: String
+    @Json(name = "avatar") val avatarUrl: String, // URL to image in format like this: "https//test.com/test.jpg"
+    @Json(name = "first_name") val userName: String,
+    @Json(name = "email") val groupName: String
 )
