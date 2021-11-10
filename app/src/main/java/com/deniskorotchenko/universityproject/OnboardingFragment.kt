@@ -2,6 +2,7 @@ package com.deniskorotchenko.universityproject
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -30,6 +31,14 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         viewBinding.playerView.player = exoPlayer
         viewBinding.viewPager.setTextPages()
         viewBinding.viewPager.attachDots(viewBinding.onboardingTextTabLayout)
+        viewBinding.signInButton.setOnClickListener {
+            // todo: реализовать навигацию на SignInFragment
+            Toast.makeText(requireContext(), "Sign In", Toast.LENGTH_SHORT).show()
+        }
+        viewBinding.signUpButton.setOnClickListener {
+            // todo: реализовать навигацию на SignUpFragment
+            Toast.makeText(requireContext(), "Sign Out", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onResume() {
