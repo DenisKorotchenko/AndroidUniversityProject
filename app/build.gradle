@@ -78,4 +78,10 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer-ui:$exoPlayerVersion"
 
     implementation 'androidx.fragment:fragment-ktx:1.3.6'
+
+    // RecyclerView adapter delegates.
+    // https://github.com/sockeqwe/AdapterDelegates
+    def adapterDelegatesVersion = '4.3.0'
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$adapterDelegatesVersion"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapterDelegatesVersion"
 }
