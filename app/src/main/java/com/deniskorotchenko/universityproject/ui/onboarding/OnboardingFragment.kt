@@ -1,12 +1,15 @@
-package com.deniskorotchenko.universityproject
+package com.deniskorotchenko.universityproject.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.deniskorotchenko.universityproject.ui.base.BaseFragment
+import com.deniskorotchenko.universityproject.R
 import com.deniskorotchenko.universityproject.databinding.FragmentOnboardingBinding
+import com.deniskorotchenko.universityproject.onboardingTextAdapterDelegate
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -15,7 +18,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
-class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
+class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
 
@@ -32,12 +35,10 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         viewBinding.viewPager.setTextPages()
         viewBinding.viewPager.attachDots(viewBinding.onboardingTextTabLayout)
         viewBinding.signInButton.setOnClickListener {
-            // todo: реализовать навигацию на SignInFragment
-            Toast.makeText(requireContext(), "Sign In", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_onboardingFragment_to_signInFragment)
         }
         viewBinding.signUpButton.setOnClickListener {
-            // todo: реализовать навигацию на SignUpFragment
-            Toast.makeText(requireContext(), "Sign Out", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_onboardingFragment_to_signUpFragment)
         }
     }
 
