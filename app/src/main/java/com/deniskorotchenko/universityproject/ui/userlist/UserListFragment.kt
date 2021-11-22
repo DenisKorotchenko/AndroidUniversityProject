@@ -26,7 +26,7 @@ class UserListFragment : BaseFragment(R.layout.fragment_userlist) {
 
     private fun subscribeToViewState() {
         lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.viewState.collect(::renderViewState)
             }
         }

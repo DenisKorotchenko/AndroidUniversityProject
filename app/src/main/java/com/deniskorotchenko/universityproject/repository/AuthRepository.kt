@@ -14,4 +14,14 @@ object AuthRepository {
     suspend fun logOut() {
         _isAuthorizedFlow.emit(false)
     }
+
+    suspend fun signUp(
+        firstname: String,
+        lastname: String,
+        nickname: String,
+        email: String,
+        password: String
+    ) {
+        //TODO: Get API response for email availability, change screen to email confirm
+    }
 }
