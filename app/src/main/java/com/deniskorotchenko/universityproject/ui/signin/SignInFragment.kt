@@ -52,11 +52,11 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
             return
         }
         AlertDialog.Builder(requireContext())
-            .setTitle(R.string.sign_in_back_alert_dialog_text)
-            .setNegativeButton(R.string.sign_in_back_alert_dialog_no_button_text) { dialog, _ ->
+            .setTitle(R.string.common_back_alert_dialog_text)
+            .setNegativeButton(R.string.common_back_alert_dialog_no_button_text) { dialog, _ ->
                 dialog.dismiss()
             }
-            .setPositiveButton(R.string.sign_in_back_alert_dialog_yes_button_text) { _, _ ->
+            .setPositiveButton(R.string.common_back_alert_dialog_yes_button_text) { _, _ ->
                 findNavController().popBackStack()
             }
             .show()
