@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import dev.chrisbanes.insetter.applyInsetter
 
 class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
@@ -26,6 +27,12 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.volumeControlButton.applyInsetter {
+            type(statusBars = true) { margin() }
+        }
+        viewBinding.signUpButton.applyInsetter {
+            type(navigationBars = true) { margin() }
+        }
         exoPlayer = SimpleExoPlayer.Builder(requireContext()).build().apply {
             addMediaItem(MediaItem.fromUri("asset:///onboarding_video_r.mp4"))
             repeatMode = Player.REPEAT_MODE_ALL
