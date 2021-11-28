@@ -6,7 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <com.google.android.exoplayer2.ui.PlayerView
@@ -64,7 +64,7 @@
             app:tabMaxWidth="18dp"
             app:tabMinWidth="18dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signInButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,8 +75,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/onboardingTextTabLayout" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signUpButton"
+            style="@style/Widget.UniversityProject.Button.Secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"

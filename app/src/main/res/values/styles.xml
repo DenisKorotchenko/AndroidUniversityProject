@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.UniversityProject.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/logo_green</item>
+    </style>
+    <style name="Widget.UniversityProject.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/logo_orange</item>
+    </style>
+    <style name="Widget.UniversityProject.ImageButton.Back" parent="Widget.AppCompat.ImageButton">
+        <item name="android:tint">@color/logo_blue</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:src">@drawable/ic_arrow_back_black_24dp</item>
+    </style>
+</resources>
