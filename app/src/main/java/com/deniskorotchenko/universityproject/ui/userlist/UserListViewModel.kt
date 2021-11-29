@@ -1,7 +1,9 @@
 package com.deniskorotchenko.universityproject.ui.userlist
 
 import androidx.lifecycle.viewModelScope
-import com.deniskorotchenko.universityproject.data.network.Api
+import com.deniskorotchenko.universityproject.BuildConfig
+import com.deniskorotchenko.universityproject.data.network.response.Api
+import com.deniskorotchenko.universityproject.data.network.response.MockApi
 import com.deniskorotchenko.universityproject.ui.base.BaseViewModel
 import com.deniskorotchenko.universityproject.entity.User
 import com.squareup.moshi.Moshi
@@ -42,16 +44,21 @@ class UserListViewModel: BaseViewModel() {
     private val providerApi = provideApi()
 
     private fun provideApi(): Api {
-        return Retrofit.Builder()
-            .client(provideOkHttpClient())
-            .baseUrl("https://reqres.in/api/")
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
-            .build()
-            .create(Api::class.java)
+        return if (BuildConfig.USE_MOCK_BACKEND_API) {
+            MockApi()
+        } else {
+            Retrofit.Builder()
+                .client(provideOkHttpClient())
+                .baseUrl("https://reqres.in/api/")
+                .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
+                .build()
+                .create(Api::class.java)
+        }
     }
 
     private fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().build()
+        return OkHttpClient.Builder()//.addNetworkInterceptor(AuthorizationInterceptor(authRepository))
+            .build()
     }
 
     private fun provideMoshi(): Moshi {
