@@ -5,6 +5,7 @@ import com.deniskorotchenko.universityproject.data.network.request.RefreshAuthTo
 import com.deniskorotchenko.universityproject.data.network.request.SignInWithEmailRequest
 import com.deniskorotchenko.universityproject.data.network.response.error.*
 import com.deniskorotchenko.universityproject.entity.AuthTokens
+import com.deniskorotchenko.universityproject.entity.Post
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi: Api {
@@ -39,6 +40,10 @@ class MockApi: Api {
     }
 
     override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPosts(): NetworkResponse<List<Post>, Unit> {
         TODO("Not yet implemented")
     }
 }
