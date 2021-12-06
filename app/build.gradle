@@ -112,6 +112,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.activity:activity-ktx:1.4.0-alpha01"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // Image loading
     def glideVersion = "4.11.0"
