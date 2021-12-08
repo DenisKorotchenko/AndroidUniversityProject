@@ -3,6 +3,9 @@ package com.deniskorotchenko.universityproject.ui.signin
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
+import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
@@ -44,8 +47,39 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
                 onBackButtonPressed()
             }
         }
-
+        setupAnimation()
         subscribeToFormFields()
+    }
+
+    private fun setupAnimation() {
+        val firstRotateAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
+        val repeatableRotateAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.repeatable_rotate)
+        val enableButtonAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha)
+
+        enableButtonAnimation.setAnimationListener( object : AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {
+                viewBinding.signInButton.alpha = 1.0.toFloat()
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {}
+
+            override fun onAnimationRepeat(p0: Animation?) {}
+
+        })
+
+        firstRotateAnimation.setAnimationListener( object : AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {}
+
+            override fun onAnimationEnd(p0: Animation?) {
+                viewBinding.signInButton.startAnimation(enableButtonAnimation)
+                viewBinding.mknLogoImageView.startAnimation(repeatableRotateAnimation)
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {}
+        })
+
+        viewBinding.mknLogoImageView.startAnimation(firstRotateAnimation)
+        //viewBinding.signInButton.startAnimation(enableButtonAnimation)
     }
 
     private fun onBackButtonPressed() {
