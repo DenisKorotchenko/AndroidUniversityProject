@@ -6,6 +6,7 @@ import com.deniskorotchenko.universityproject.data.network.request.SignInWithEma
 import com.deniskorotchenko.universityproject.data.network.response.error.*
 import com.deniskorotchenko.universityproject.entity.AuthTokens
 import com.deniskorotchenko.universityproject.entity.Post
+import com.deniskorotchenko.universityproject.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi: Api {
@@ -45,5 +46,16 @@ class MockApi: Api {
 
     override suspend fun getPosts(): NetworkResponse<List<Post>, Unit> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfile(): NetworkResponse<User, GetUserDataByTokenErrorResponse> {
+        return NetworkResponse.Success(
+            User(
+                avatarUrl = "https://reqres.in/img/faces/2-image.jpg",
+                userName = "Janet",
+                groupName = "Weaver"
+            ),
+            code = 200
+        )
     }
 }
