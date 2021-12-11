@@ -5,6 +5,7 @@ import com.deniskorotchenko.universityproject.data.network.request.RefreshAuthTo
 import com.deniskorotchenko.universityproject.data.network.request.SignInWithEmailRequest
 import com.deniskorotchenko.universityproject.data.network.response.error.*
 import com.deniskorotchenko.universityproject.entity.AuthTokens
+import com.deniskorotchenko.universityproject.entity.Post
 import com.deniskorotchenko.universityproject.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.squareup.moshi.Json

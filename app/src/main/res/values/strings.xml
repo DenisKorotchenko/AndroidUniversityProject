@@ -31,4 +31,5 @@
     <string name="profile_error_text">Ошибка загрузки:(</string>
     <string name="profile_loading_text">Загружается…</string>
     <string name="news_toolbar_title">Мобильная разработка</string>
+    <string name="common_counter_prefix">%d</string>
 </resources>

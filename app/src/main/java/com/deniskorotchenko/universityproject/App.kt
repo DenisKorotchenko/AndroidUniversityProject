@@ -24,18 +24,6 @@ class App : Application() {
         )
             .allowMainThreadQueries()
             .build()
-
-        db.postDao().insert(
-            Post(
-                id = 1,
-                linkUrl = "linkUrl",
-                imageUrl = "imageUrl",
-                title = "title",
-                text = "text",
-                createdAt = "2021-01-01",
-                updatedAt = "2021-01-10"
-            )
-        )
     }
 
     private fun initLogger() {

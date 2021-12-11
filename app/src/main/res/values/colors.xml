@@ -11,4 +11,5 @@
     <color name="logo_green">#6bc6c7</color>
     <color name="logo_blue">#0079c0</color>
     <color name="logo_orange">#fca73d</color>
+    <color name="color_post_like_border">#F44336</color>
 </resources>
