@@ -5,9 +5,11 @@ import com.deniskorotchenko.universityproject.data.network.request.RefreshAuthTo
 import com.deniskorotchenko.universityproject.data.network.request.SignInWithEmailRequest
 import com.deniskorotchenko.universityproject.data.network.response.error.*
 import com.deniskorotchenko.universityproject.entity.AuthTokens
+import com.deniskorotchenko.universityproject.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi: Api {
+
     override suspend fun getUsers(): GetUsersResponse {
         TODO("Not yet implemented")
     }
@@ -40,5 +42,16 @@ class MockApi: Api {
 
     override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfile(): NetworkResponse<User, GetUserDataByTokenErrorResponse> {
+        return NetworkResponse.Success(
+            User(
+                avatarUrl = "https://reqres.in/img/faces/2-image.jpg",
+                userName = "Janet",
+                groupName = "Weaver"
+            ),
+            code = 200
+        )
     }
 }
