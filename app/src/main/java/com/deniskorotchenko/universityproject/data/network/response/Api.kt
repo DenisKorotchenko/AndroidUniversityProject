@@ -40,6 +40,10 @@ interface Api {
     suspend fun createProfile(
         @Body request: CreateProfileRequest
     ): NetworkResponse<AuthTokens, CreateProfileErrorResponse>
+
+    @GET("profile")
+    suspend fun getProfile() :
+            NetworkResponse<User, GetUserDataByTokenErrorResponse>
 }
 
 @JsonClass(generateAdapter = true)
