@@ -27,7 +27,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
             .circleCrop() // закругление фотографий
             .into(holder.avatarImageView)
         holder.userNameTextView.text = userList[position].userName
-        holder.groupNameTextView.text = userList[position].groupName
+        holder.groupNameTextView.text = userList[position].firstName
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +37,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val avatarImageView = itemView.findViewById<ImageView>(R.id.avatarImageView)
         val userNameTextView = itemView.findViewById<TextView>(R.id.userNameTextView)
-        val groupNameTextView = itemView.findViewById<TextView>(R.id.groupNameTextView)
+        val groupNameTextView = itemView.findViewById<TextView>(R.id.firstAndLastNamesTextView)
     }
 
 }

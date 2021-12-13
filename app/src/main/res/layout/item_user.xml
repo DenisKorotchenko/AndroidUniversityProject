@@ -24,13 +24,13 @@
         app:layout_constraintStart_toEndOf="@+id/avatarImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/groupNameTextView"
+        app:layout_constraintBottom_toTopOf="@+id/firstAndLastNamesTextView"
         android:layout_marginStart="8dp"
         tools:text="First row"
         style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
     <TextView
-        android:id="@+id/groupNameTextView"
+        android:id="@+id/firstAndLastNamesTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
