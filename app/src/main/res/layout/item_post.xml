@@ -47,10 +47,27 @@
         tools:text="Это тестовый текст поста, который необходим исключительно для проверки корректного отображения."
         />
     <com.deniskorotchenko.universityproject.ui.news.PostLikesView
+        android:id="@+id/likesView"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/postText"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/likeButton"
+        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/likeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_grey_favorite_24"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/likesView"
+        app:layout_constraintTop_toTopOf="@id/likesView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/likesView"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
