@@ -10,7 +10,7 @@ data class Error(
 )
 
 enum class ErrorCode {
-    UNKNOWN,
+    UNKNOWN, // 0
     @Json(name = "required") REQUIRED,
     @Json(name = "null") NULL,
     @Json(name = "invalid") INVALID,

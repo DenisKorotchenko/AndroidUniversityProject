@@ -5,10 +5,18 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CreateProfileErrorResponse(
-    @Json(name = "non_field_errors") val nonFieldErrors: List<Error>?,
-    @Json(name = "verification_token") val verificationToken: List<Error>?,
-    @Json(name = "first_name") val firstName: List<Error>?,
-    @Json(name = "last_name") val lastName: List<Error>?,
-    @Json(name = "email") val email: List<Error>?,
-    @Json(name = "password") val password: List<Error>?
+    @Json(name = "user_name") val userName: List<CodeError>?,
+    @Json(name = "first_name") val firstName: List<CodeError>?,
+    @Json(name = "last_name") val lastName: List<CodeError>?,
+    @Json(name = "email") val email: List<CodeError>?,
+    @Json(name = "password") val password: List<CodeError>?,
+    @Json(name = "about_me") val aboutMe: List<CodeError>?,
+    @Json(name = "picture") val avatarUrl: List<CodeError>?,
+    @Json(name = "phone_number") val phoneNumber: List<CodeError>?
+)
+
+@JsonClass(generateAdapter = true)
+data class CodeError(
+    @Json(name = "code") val errorCode: Long,
+    @Json(name = "message") val errorMessage: String?
 )

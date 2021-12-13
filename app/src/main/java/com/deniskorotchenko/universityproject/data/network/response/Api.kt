@@ -15,7 +15,7 @@ interface Api {
     @GET("users?per_page=10")
     suspend fun getUsers(): GetUsersResponse
 
-    @POST("auth/sign-in-email")
+    @POST("auth/sign-in-with-email")
     suspend fun signInWithEmail(
         @Body request: SignInWithEmailRequest
     ): NetworkResponse<AuthTokens, SignInWithEmailErrorResponse>
@@ -36,12 +36,12 @@ interface Api {
         @Query("email") email: String?
     ): NetworkResponse<VerificationTokenResponse, VerifyRegistrationCodeErrorResponse>
 
-    @PUT("registration/create-profile")
+    @POST("registration/create-profile")
     suspend fun createProfile(
         @Body request: CreateProfileRequest
-    ): NetworkResponse<AuthTokens, CreateProfileErrorResponse>
+    ): NetworkResponse<User, CreateProfileErrorResponse>
 
-    @GET("profile")
+    @GET("users/get-profile")
     suspend fun getProfile() :
             NetworkResponse<User, GetUserDataByTokenErrorResponse>
 }

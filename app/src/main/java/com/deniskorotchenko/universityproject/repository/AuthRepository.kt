@@ -11,6 +11,7 @@ import com.deniskorotchenko.universityproject.data.persistent.LocalKeyValueStora
 import com.deniskorotchenko.universityproject.di.AppCoroutineScope
 import com.deniskorotchenko.universityproject.di.IoCoroutineDispatcher
 import com.deniskorotchenko.universityproject.entity.AuthTokens
+import com.deniskorotchenko.universityproject.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -80,13 +81,37 @@ class AuthRepository @Inject constructor(
         lastName: String,
         password: String
     ): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+        TODO("Later")
+//        return api.createProfile(
+//            CreateProfileRequest(
+//                verificationToken,
+//                firstName,
+//                lastName,
+//                email,
+//                password
+//            )
+//        )
+    }
+
+    suspend fun signUp(
+        email: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        userName: String,
+        aboutMe: String,
+        avatarUrl: String,
+    ): NetworkResponse<User, CreateProfileErrorResponse> {
         return api.createProfile(
             CreateProfileRequest(
-                verificationToken,
-                firstName,
-                lastName,
-                email,
-                password
+                userName = userName,
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                password = password,
+                aboutMe = if (aboutMe != "") aboutMe else null,
+                avatarUrl = if (avatarUrl != "") avatarUrl else null,
+                phoneNumber = null
             )
         )
     }
