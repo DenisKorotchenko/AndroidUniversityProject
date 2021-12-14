@@ -1,8 +1,5 @@
 package com.deniskorotchenko.universityproject.entity
 
-/**
- * @see [com.ruslankalbaev.ourawesomeapp.data.json.AuthTokensAdapter]
- */
 data class AuthTokens(
     val accessToken: String,
     val refreshToken: String,

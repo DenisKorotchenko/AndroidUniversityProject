@@ -11,7 +11,7 @@ import com.haroldadmin.cnradapter.NetworkResponse
 
 class MockApi: Api {
     override suspend fun getUsers(): GetUsersResponse {
-        TODO("Not yet implemented")
+        return GetUsersResponse(listOf())
     }
 
     override suspend fun signInWithEmail(request: SignInWithEmailRequest): NetworkResponse<AuthTokens, SignInWithEmailErrorResponse> {
@@ -40,7 +40,7 @@ class MockApi: Api {
         TODO("Not yet implemented")
     }
 
-    override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<AuthTokens, CreateProfileErrorResponse> {
+    override suspend fun createProfile(request: CreateProfileRequest): NetworkResponse<User, CreateProfileErrorResponse> {
         TODO("Not yet implemented")
     }
 
@@ -51,9 +51,11 @@ class MockApi: Api {
     override suspend fun getProfile(): NetworkResponse<User, GetUserDataByTokenErrorResponse> {
         return NetworkResponse.Success(
             User(
+                id = 0,
                 avatarUrl = "https://reqres.in/img/faces/2-image.jpg",
-                userName = "Janet",
-                groupName = "Weaver"
+                userName = "JanetWeaver20",
+                firstName = "Janet",
+                lastName = "Weaver"
             ),
             code = 200
         )

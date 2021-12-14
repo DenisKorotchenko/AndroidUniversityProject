@@ -30,6 +30,11 @@
     <string name="common_general_error_text">Упс, что-то пошло не так:(</string>
     <string name="profile_error_text">Ошибка загрузки:(</string>
     <string name="profile_loading_text">Загружается…</string>
+    <string name="sign_up_about_me_text_layout_hint">Обо мне (необязательно)</string>
+    <string name="sign_up_avatar_url_text_layout_hint">Ссылка на аватарку (необязательно)</string>
+    <string name="sign_up_network_error_toast">Ошибка: проверьте подключение к сети и попробуйте снова</string>
+    <string name="sign_up_unknown_error_toast">Неизвестная ошибка. Попробуйте снова</string>
+    <string name="sign_up_null_error_text">Поле должно быть заполнено</string>
     <string name="news_toolbar_title">Мобильная разработка</string>
     <string name="common_counter_prefix">+%d</string>
 </resources>

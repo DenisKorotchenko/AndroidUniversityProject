@@ -11,6 +11,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.text.buildSpannedString
 import androidx.core.text.inSpans
@@ -22,11 +23,16 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.deniskorotchenko.universityproject.ui.base.BaseFragment
 import com.deniskorotchenko.universityproject.R
+import com.deniskorotchenko.universityproject.data.network.response.error.CodeError
 import com.deniskorotchenko.universityproject.databinding.FragmentSignUpBinding
+import com.deniskorotchenko.universityproject.entity.ErrorCode
 import com.deniskorotchenko.universityproject.util.getSpannedString
+import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
     private val viewModel: SignUpViewModel by viewModels()
     private val viewBinding by viewBinding(FragmentSignUpBinding::bind)
@@ -49,19 +55,46 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
             onBackButtonPressed()
         }
         viewBinding.signUpButton.setOnClickListener {
-            viewModel.signUp(
-                firstname = viewBinding.firstnameEditText.text?.toString() ?: "",
-                lastname = viewBinding.lastnameEditText.text?.toString() ?: "",
-                nickname = viewBinding.nicknameEditText.text?.toString() ?: "",
-                email = viewBinding.emailEditText.text?.toString() ?: "",
-                password = viewBinding.passwordEditText.text?.toString() ?: ""
-            )
+            signUp()
         }
         viewBinding.termsAndConditionsCheckBox.setClubRulesText {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://policies.google.com/terms")))
         }
         subscribeToFormFields()
         subscribeToEvents()
+    }
+
+    private fun signUp() {
+        clearErrors()
+        viewModel.signUp(
+            firstName = viewBinding.firstnameEditText.text?.toString() ?: "",
+            lastName = viewBinding.lastnameEditText.text?.toString() ?: "",
+            userName = viewBinding.nicknameEditText.text?.toString() ?: "",
+            email = viewBinding.emailEditText.text?.toString() ?: "",
+            password = viewBinding.passwordEditText.text?.toString() ?: "",
+            aboutMe = viewBinding.aboutMeEditText.text?.toString() ?: "",
+            avatarUrl = viewBinding.avatarUrlEditText.text?.toString() ?: ""
+        )
+    }
+
+    private fun showErrors(view: TextInputEditText, errors: List<CodeError>?) {
+        if (errors == null)
+            return
+        for (error in errors) {
+            view.error = error.errorMessage
+        }
+    }
+
+    private fun clearErrors() {
+        viewBinding.apply {
+            nicknameEditText.error = null
+            firstnameEditText.error = null
+            lastnameEditText.error = null
+            emailEditText.error = null
+            passwordEditText.error = null
+            aboutMeEditText.error = null
+            avatarUrlEditText.error = null
+        }
     }
 
     private fun subscribeToEvents() {
@@ -72,8 +105,29 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
                         is SignUpViewModel.Event.SignUpEmailConfirmationRequired -> {
                             findNavController().navigate(R.id.emailConfirmationFragment)
                         }
-                        else -> {
-                            // Do nothing.
+                        is SignUpViewModel.Event.SignUpSuccess -> {
+                            findNavController().popBackStack()
+                        }
+                        is SignUpViewModel.Event.NetworkError -> {
+                            Toast.makeText(
+                                requireContext(), R.string.sign_up_network_error_toast, Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        is SignUpViewModel.Event.UnknownError -> {
+                            Toast.makeText(
+                                requireContext(), R.string.sign_up_unknown_error_toast, Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        is SignUpViewModel.Event.SingUpServerError -> {
+                            event.error.apply {
+                                showErrors(viewBinding.nicknameEditText, userName)
+                                showErrors(viewBinding.lastnameEditText, lastName)
+                                showErrors(viewBinding.firstnameEditText, firstName)
+                                showErrors(viewBinding.emailEditText, email)
+                                showErrors(viewBinding.avatarUrlEditText, avatarUrl)
+                                showErrors(viewBinding.passwordEditText, password)
+                                showErrors(viewBinding.aboutMeEditText, aboutMe)
+                            }
                         }
                     }
                 }
