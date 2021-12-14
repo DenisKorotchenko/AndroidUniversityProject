@@ -111,6 +111,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.activity:activity-ktx:1.4.0-alpha01"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // Image loading
     def glideVersion = "4.11.0"
@@ -154,4 +155,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
+
+    // Room (ORM like database tool).
+    def roomVersion = "2.3.0"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }

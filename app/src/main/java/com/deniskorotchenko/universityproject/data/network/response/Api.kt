@@ -5,6 +5,7 @@ import com.deniskorotchenko.universityproject.data.network.request.RefreshAuthTo
 import com.deniskorotchenko.universityproject.data.network.request.SignInWithEmailRequest
 import com.deniskorotchenko.universityproject.data.network.response.error.*
 import com.deniskorotchenko.universityproject.entity.AuthTokens
+import com.deniskorotchenko.universityproject.entity.Post
 import com.deniskorotchenko.universityproject.entity.User
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.squareup.moshi.Json
@@ -40,6 +41,11 @@ interface Api {
     suspend fun createProfile(
         @Body request: CreateProfileRequest
     ): NetworkResponse<User, CreateProfileErrorResponse>
+
+    @POST("posts")
+    suspend fun getPosts(
+
+    ): NetworkResponse<List<Post>, Unit>
 
     @GET("users/get-profile")
     suspend fun getProfile() :
