@@ -25,6 +25,16 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     private var exoPlayer: ExoPlayer? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exoPlayer = SimpleExoPlayer.Builder(requireContext()).build().apply {
+            addMediaItem(MediaItem.fromUri("asset:///onboarding_video_r.mp4"))
+            repeatMode = Player.REPEAT_MODE_ALL
+            prepare()
+            volume = 0f
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.volumeControlButton.applyInsetter {
@@ -32,11 +42,6 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         }
         viewBinding.signUpButton.applyInsetter {
             type(navigationBars = true) { margin() }
-        }
-        exoPlayer = SimpleExoPlayer.Builder(requireContext()).build().apply {
-            addMediaItem(MediaItem.fromUri("asset:///onboarding_video_r.mp4"))
-            repeatMode = Player.REPEAT_MODE_ALL
-            prepare()
         }
         viewBinding.playerView.player = exoPlayer
         viewBinding.viewPager.setTextPages()
@@ -46,6 +51,20 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         }
         viewBinding.signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_signUpFragment)
+        }
+        if (exoPlayer?.volume == 1f) {
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_up_white_24dp)
+        } else {
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
+        }
+        viewBinding.volumeControlButton.setOnClickListener {
+            if (exoPlayer?.volume == 1f) {
+                exoPlayer?.volume = 0f
+                viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
+            } else {
+                exoPlayer?.volume = 1f
+                viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_up_white_24dp)
+            }
         }
     }
 
